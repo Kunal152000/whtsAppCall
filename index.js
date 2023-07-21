@@ -11,7 +11,7 @@ async function fetchStudentData(studentId) {
     const response = await axios.get(
       `${process.env.API_BASE_URL}/${studentId}`
     );
-    console.log(response.data);
+    // console.log(response.data);
     return response.data;
   } catch (error) {
     throw new Error(
@@ -51,6 +51,6 @@ app.post("/whatsapp-webhook", async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
