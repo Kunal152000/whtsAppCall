@@ -21,7 +21,7 @@ async function fetchStudentData(studentId) {
   }
 }
 
-app.post("/whatsapp-webhook", async (req, res) => {
+app.all("/whatsapp-webhook", async (req, res) => {
   const userMessage = req.body.Body;
 
   // Check if the user provided any input
