@@ -21,13 +21,6 @@ async function fetchStudentData(studentId) {
   }
 }
 
-//Account Sid
-// ACd91a928eb49106654d4c44d61a1a5707
-
-// Auth Token
-// d9af0620407b6a7608c726903b2aec86
-// /Twilio phonenumber
-// +12175996166
 
 app.all("/whatsapp-webhook", async (req, res) => {
   const userMessage = req.body.Body;
