@@ -4,21 +4,38 @@ const twilio = require("twilio");
 
 // Create a function to fetch student data from your API
 async function getStudentData(studentId) {
-  const apiUrl = `https://excited-seal-button.cyclic.app/whatsapp-webhook/${studentId}`;
-  const response = await fetch(apiUrl);
+  const apiUrl = `https://excited-seal-button.cyclic.app/whatsapp-webhook/`;
+  let config = {
+    method: "post",
+    maxBodyLength: Infinity,
+    url: "https://excited-seal-button.cyclic.app/whatsapp-webhook",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    data: studentId,
+  };
+
+  axios
+    .request(config)
+    .then((response) => {
+      console.log(JSON.stringify(response.data));
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   const data = await response.json();
   return data;
 }
-async function sendWhatsAppMessage(to, body) {
+async function sendWhatsAppMessage(body) {
   const accountSid = process.env.TWILIO_ACCOUNT_SID;
   const authToken = process.env.TWILIO_AUTH_TOKEN;
   const client = twilio(accountSid, authToken);
 
   try {
     await client.messages.create({
-      body: body,
+      body: "body",
       from: "whatsapp:+14155238886",
-      to: `whatsapp:${to}`,
+      to: `whatsapp:=+919560843349`,
     });
   } catch (error) {
     console.error("Error sending WhatsApp message:", error.message);
